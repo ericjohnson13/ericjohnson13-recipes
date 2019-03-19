@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Attribution</key>
+	<dict>
+		<key>Author</key>
+		<dict>
+			<key>Email</key>
+			<string>ejohns03@calpoly.edu</string>
+			<key>Name</key>
+			<string>Eric Johnson</string>
+		</dict>
+		<key>Copyright</key>
+		<string>Cal Poly San Luis Obispo</string>
+	</dict>
+	<key>Description</key>
+	<string>Downloads current release version of saml2aws</string>
+	<key>Identifier</key>
+	<string>edu.calpoly.download.saml2aws</string>
+	<key>Input</key>
+	<dict>
+		<key>GITHUB_REPO</key>
+		<string>Versent/saml2aws</string>
+		<key>NAME</key>
+		<string>saml2aws</string>
+	</dict>
+	<key>Process</key>
+	<array>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>asset_regex</key>
+				<string>[a-z0-9-._]*_darwin_amd64.tar.gz</string>
+				<key>github_repo</key>
+				<string>%GITHUB_REPO%</string>
+			</dict>
+			<key>Processor</key>
+			<string>GitHubReleasesInfoProvider</string>
+		</dict>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>filename</key>
+				<string>%NAME%-%version%.tar.gz</string>
+			</dict>
+			<key>Processor</key>
+			<string>URLDownloader</string>
+		</dict>
+		<dict>
+			<key>Processor</key>
+			<string>EndOfCheckPhase</string>
+		</dict>
+	</array>
+</dict>
+</plist>
